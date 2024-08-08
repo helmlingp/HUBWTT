@@ -69,6 +69,7 @@ HUBWTT also provides detailed information on individual items specified with the
 ## Future Improvements
 
 Future features include:
+- Support ARM64 devices
 - Capture logs into a ZIP
 - Captured logs included with ExportHUBW function
 - Improve exportHUBW to zip with password provided
