@@ -40,6 +40,7 @@ This functionality has been added to identify issues relating to network securit
 
 ## Note: The following limitations exist today:
 
+- Workspace ONE Intelligent Hub for Windows 22.03 to 23.02. An update to support newer HUBW versions will be released soon.
 - Windows 11 ARM64 not supported
 - Many Profiles do not display
 
