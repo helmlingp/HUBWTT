@@ -59,7 +59,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.**
 
 HUBWTT provides options to list information within relative groups:
 
-![HUBWTT.exe --help](./Images/HUBWTT-help.png)
+![HUBWTT.exe](./Images/HUBWTT.gif)
 
 HUBWTT also provides detailed information on individual items specified with the --item option. Use the **--item _NameOfAttribute_** to return only the value of that item. This is great for returning a value to a sensor. This option is available with many of the provided functions. For example:
 
