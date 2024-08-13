@@ -2,7 +2,6 @@
 
 ![Managed Apps](./Images/HUBWTT.gif)
 
-### Replace this with a video demo
 <a id='toc'></a>
 HUBWTT.exe is a CLI app to display Workspace ONE Hub for Windows (HUBW) configuration settings as well as perform some functions to help with supporting HUBW:
  
