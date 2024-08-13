@@ -1,6 +1,6 @@
 # Intelligent Hub for Windows Troubleshooting Tool (HUBWTT)
 
-![Managed Apps](./Images/HUBWTT-apps.png)
+![Managed Apps](./Images/HUBWTT.gif)
 
 ### Replace this with a video demo
 <a id='toc'></a>
