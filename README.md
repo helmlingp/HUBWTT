@@ -10,6 +10,7 @@ HUBWTT.exe is a CLI app to display Workspace ONE Hub for Windows (HUBW) configur
 - [Export HUBW LiteDB](./docs/exporthub.md)
 - [General (HUBW), Sample and Custom Lookup info](./docs/general.md)
 - [LAPS Function](./docs/laps.md)
+- [Logs Functions](./docs/logs.md)
 - [Profiles Info](./docs/profiles.md)
 - [Scripts Info](./docs/scripts.md)
 - [Sensors Info](./docs/sensors.md)
@@ -39,11 +40,9 @@ This functionality has been added to identify issues relating to network securit
 
 ## Note: The following limitations exist today:
 
-- Workspace ONE Intelligent Hub for Windows 22.03 to 23.02. An update to support newer HUBW versions will be released soon.
-- Windows 11 ARM64 not supported
-- Many Profiles do not display
+- Many Profiles do not display as they are not tracked locally
 
-        Phil Helmling, helmlingp@vmware.com, @philhelmling
+        Phil Helmling, helmlingp@omnissa.com, @philhelmling
 
 # Disclaimer
 
@@ -69,11 +68,11 @@ HUBWTT also provides detailed information on individual items specified with the
 ## Future Improvements
 
 Future features include:
-- Support ARM64 devices
-- Capture logs into a ZIP
-- Captured logs included with ExportHUBW function
-- Improve exportHUBW to zip with password provided
-- Redirect logs to central log server for analysis
+- ~~Support ARM64 devices~~
+- ~~Capture logs into a ZIP~~
+- ~~Captured logs included with ExportHUBW function~~
+- ~~Improve exportHUBW to zip with password provided~~
+- ~~Redirect logs to central log server for analysis~~
 - Display App deployment log details
 - Display all profiles
 - Sort Workflow steps

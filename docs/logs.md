@@ -1,13 +1,25 @@
-# Export HUBW LiteDB
+# Log Functions
 
 <div style="text-align: right"
 
 [Go to Table of Contents](../README.md#toc)
 </div>
 
-This function backs up or exports the HUBW LiteDB and logs to allow Engineering and Global Support Services to analyse a device for support purposes. The log capture is similar to the capture logs function within the HUBW > Troubleshooting menu in the System Tray.
+This function provides multiple capabilities focused on HUBW logging:
+- [Log Functions](#log-functions)
+  - [Capture Logs](#capture-logs)
+  - [Get Password for Log Zip](#get-password-for-log-zip)
+  - [Set Logging Level](#set-logging-level)
+    - [Future](#future)
+  - [Send Logs to Global Customer Services](#send-logs-to-global-customer-services)
 
-**Note: This function should only be used under the direction of GSS and Engineering.**
+## Capture Logs
+
+`HUBWTT.exe logs --capture`
+
+Capture logs to a password protected and encrypted log bundle. This function also captures relevant registry keys, event logs, status of all services and list of running processes. This function is similar to the capture logs function within the HUBW > Troubleshooting menu in the System Tray. A major advantage to this capability, is that it can be run from a Workspace ONE Assist or Powershell Remote session.
+
+Requires customer to provide the password which is used to create a Base64 encoded **passcode**. The passcode is then used to encrypt and password protect the log bundle. 
 
 The function:
 
@@ -22,17 +34,7 @@ The function:
 - captures status of Services
 - creates a password protected and encrypted ZIP file that includes the HUBW LiteDB backup copy and log bundle with the naming convention *HUBWExport_devicename_yyyymmddhhmmss.zip*
 
-**Note: Please provide the ZIP file AND password to GSS!**
-
-## Usage
-
-`HUBWTT.exe exportHUBW`
-
-![HUBWTT.exe exportHUBW](../Images/HUBWTT-exportHUBW.png)
-
-The ***devicename-export-hubagent.litedb*** file is encrypted and password protected and can only be opened by Global Support Services. 
-
-The log bundle includes logs from the following folders:
+Logs from the following folders are ingested:
 - C:\ProgramData\VMware\vmwetlm\logs
 - C:\ProgramData\VMWOSQEXT\logger
 - C:\ProgramData\AirWatch\UnifiedAgent\Logs
@@ -43,11 +45,10 @@ The log bundle includes logs from the following folders:
 - C:\ProgramData\VMware\VMware Tunnel\TunnelUI
 - C:\Temp\PpkgInstaller 
 
-An example Export may contain the following and follow this structure:
+An example log capture bundle may contain the following and follow this structure:
 
 ```
-HUBWExport_DESKTOP-43SFVK2_20241010110446/
-├── DESKTOP-43SFVK2-export-hubagent.litedb
+HUBWLogs_DESKTOP-43SFVK2_20241010110721/
 ├── Device
 │   ├── Agents
 │   │   ├── Application Deployment Agent
@@ -136,3 +137,44 @@ HUBWExport_DESKTOP-43SFVK2_20241010110446/
             ├── VMware.Hub.Win32Agent.AppXInstaller-20240919.log
             └── VMware.Hub.Win32Agent.AppXInstaller-20241010.log
 ```
+
+## Get Password for Log Zip
+
+`HUBWTT.exe logs --getpwd`
+
+Get password to decrypt and extract the log zip file. Requires customer to provide the password used to encrypt the log bundle.
+
+## Set Logging Level
+
+`HUBWTT.exe logs --level Verbose`
+
+Set logging level on all HUBW logs. Possible values are:
+
+- Verbose
+- Debug
+- Information
+- Warning
+- Error and Fatal
+
+If no level is provided, logs will be set to Debug, which is currently the default level.
+
+Modifies the `C:\ProgramData\AirWatch\UnifiedAgent\LogsLogging.Default.json` file, `logmin.Serilog.MinimumLevel.Default` json element.
+
+### Future
+
+- provide ability to specify the module to set logging level on
+
+## Send Logs to Global Customer Services
+
+`HUBWTT.exe logs --sendtoGCS --SRNumber 12345678`
+
+This function sends HUBW logs to GCS. It sends the same logs captured as part of the `--capture` function. 
+
+The function downloads a utility called `seqcli.exe` from the [Datalust seqcli GitHub repository](https://github.com/datalust/seqcli/releases/download/v2024.3.873/seqcli-2024.3.873-win-x64.zip), which is used to ingest the HUBW logs to a Datalust Seq Server. Due to log inconsistencies, some logs may fail to ingest. If these logs are required, please use the [--capture function](#capture-logs) and provide the ZIP file and password to your GCS Engineer.
+
+**Important Notes:**
+
+- this function is in Alpha and may change in the next release
+- sends logs to a test server that is not certified under PCI or any other certification
+- log data is stored in Australia
+- log data is not backed up
